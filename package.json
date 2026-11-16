@@ -1,0 +1,19 @@
+{
+  "name": "skytravex-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing website for SkyTravex, the travel platform by Sky Lake Solutions.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^16.0.7",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
