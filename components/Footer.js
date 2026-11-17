@@ -1,26 +1,28 @@
 import Link from 'next/link';
 import Logo from './Logo';
+import Icon from './Icons';
 import { site, whatsappLink } from '@/lib/site';
+import { products } from '@/lib/products';
+import { solutions } from '@/lib/solutions';
 
 const columns = [
   {
-    title: 'Platform',
-    links: [
-      ['Modules', '/#modules'],
-      ['Search and booking', '/#platform'],
-      ['Three portals', '/#portals'],
-      ['Dashboard', '/#dashboard'],
-      ['Integrations', '/#integrations'],
-    ],
+    title: 'Product',
+    links: [['Platform overview', '/product'], ...products.slice(0, 6).map((p) => [p.name, `/product/${p.slug}`]), ['Integrations', '/integrations']],
+  },
+  {
+    title: 'Solutions',
+    links: solutions.map((s) => [s.name, `/solutions/${s.slug}`]),
   },
   {
     title: 'Company',
     links: [
+      ['About', '/about'],
       ['Why SkyTravex', '/why-skytravex'],
       ['Pricing', '/pricing'],
-      ['About', '/about'],
-      ['Questions', '/#faq'],
-      ['Book a demo', '/demo'],
+      ['Partner programme', '/partners'],
+      ['Insights', '/insights'],
+      ['Live demo', '/demo'],
     ],
   },
 ];
@@ -32,7 +34,7 @@ export default function Footer() {
       <div className="footer-runway" aria-hidden="true">
         <span />
       </div>
-      <div className="wrap footer-grid">
+      <div className="wrap footer-grid footer-grid-wide">
         <div className="footer-brand">
           <Logo size={38} />
           <p>
@@ -45,6 +47,28 @@ export default function Footer() {
               {site.company}
             </a>
           </p>
+          <ul className="footer-contact">
+            <li>
+              <Icon name="users" size={16} />
+              {site.contactName}, {site.company}
+            </li>
+            <li>
+              <Icon name="phone" size={16} />
+              <a href={site.phoneHref}>{site.phone}</a>
+            </li>
+            <li>
+              <Icon name="mail" size={16} />
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </li>
+            {wa ? (
+              <li>
+                <Icon name="whatsapp" size={16} />
+                <a href={wa} target="_blank" rel="noreferrer">
+                  Chat on WhatsApp
+                </a>
+              </li>
+            ) : null}
+          </ul>
         </div>
 
         {columns.map((column) => (
@@ -59,25 +83,6 @@ export default function Footer() {
             </ul>
           </nav>
         ))}
-
-        <div>
-          <h2>Talk to us</h2>
-          <ul>
-            <li>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </li>
-            {wa ? (
-              <li>
-                <a href={wa} target="_blank" rel="noreferrer">
-                  Chat on WhatsApp
-                </a>
-              </li>
-            ) : null}
-            <li>
-              <Link href="/demo">Request a walkthrough</Link>
-            </li>
-          </ul>
-        </div>
       </div>
 
       <div className="wrap footer-base">
@@ -85,7 +90,12 @@ export default function Footer() {
           © {new Date().getFullYear()} {site.company}. All rights reserved.
         </span>
         <span>Supplier content is available under your own agreements and credentials.</span>
-        <a href="#top">Back to top</a>
+        <span className="footer-legal">
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
+          <Link href="/contact">Contact</Link>
+          <a href="#top">Back to top</a>
+        </span>
       </div>
     </footer>
   );

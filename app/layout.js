@@ -1,9 +1,12 @@
 import { Outfit, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import './sections.css';
+import './extras.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MotionRoot from '@/components/MotionRoot';
+import PlaneCursor from '@/components/PlaneCursor';
+import { AnnouncementBar, WhatsAppFloat } from '@/components/SiteExtras';
 import { site } from '@/lib/site';
 
 const outfit = Outfit({
@@ -59,9 +62,15 @@ export default function RootLayout({ children }) {
         </div>
         <div className="page-grid" aria-hidden="true" />
         <span id="top" />
+        <AnnouncementBar />
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppFloat />
+        <div id="route-swoosh" className="route-swoosh" aria-hidden="true">
+          <span />
+        </div>
+        <PlaneCursor />
         <MotionRoot />
       </body>
     </html>

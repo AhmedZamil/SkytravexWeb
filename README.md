@@ -24,18 +24,20 @@ Node 20.9 or newer is required.
 
 | What | File |
 | --- | --- |
-| Name, contact email, WhatsApp number, prices | `lib/site.js` |
+| Name, contact details, WhatsApp, lead inbox, demo site, prices | `lib/site.js` |
+| Header menus and sub-menus | `lib/nav.js` |
+| Product module pages | `lib/products.js` |
+| Solution pages by business type | `lib/solutions.js` |
+| Insights articles | `lib/insights.js` |
 | Headlines, module list, FAQ, sample data | `lib/content.js` |
 | Colours, fonts, buttons, header, hero | `app/globals.css` |
 | Section layouts and animations | `app/sections.css` |
+| Menus, new pages, demo launch, plane cursor | `app/extras.css` |
 | Home page section order | `app/page.js` |
 
-Two settings in `lib/site.js` are empty on purpose:
-
-- `whatsapp`: add the number (digits only, with country code) and a
-  "Chat on WhatsApp" button appears in the hero, footer and demo form.
-- `pricing.setup` and `pricing.monthly`: add your figures and the pricing cards
-  show them. While empty, the cards read "Quoted per launch".
+`pricing.setup` and `pricing.monthly` in `lib/site.js` are empty on purpose.
+Add your figures and the pricing cards show them. While empty, the cards read
+"Quoted per launch".
 
 ## Pages
 
@@ -45,14 +47,23 @@ Two settings in `lib/site.js` are empty on purpose:
 - `/why-skytravex`
 - `/pricing` with a scope builder that carries the selection into the demo form
 - `/about`
-- `/demo` request form
+- `/demo` live demo starter: form, launch animation, then Aerotake
+- `/product` and `/product/[module]` (8 module pages)
+- `/solutions` and `/solutions/[business]` (6 pages)
+- `/integrations`, `/partners`, `/contact`, `/insights`, `/privacy`, `/terms`
 
-## The demo form
+## Forms and email
 
-The form validates the fields, then opens the visitor's email app with the
-request addressed to the inbox in `lib/site.js`. Nothing is stored and no
-backend is needed. To collect requests in a CRM or a sheet instead, replace the
-`onSubmit` handler in `components/DemoForm.js` with a call to your endpoint.
+The demo, contact and partner forms send each request to `leadsEmail` in
+`lib/site.js` through FormSubmit (formsubmit.co). No backend or key is needed.
+
+**One-time activation:** the first request sent from the live site triggers an
+email from FormSubmit to that inbox. Click the activation link in it once;
+every request after that is delivered. Requests sent before activation are not
+delivered, so submit a test request yourself right after deploying.
+
+After the demo form is sent, the visitor sees a short launch animation and is
+taken to `demoUrl` (Aerotake).
 
 ## Notes on the content
 

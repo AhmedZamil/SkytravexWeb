@@ -12,6 +12,7 @@ import MobileSync from '@/components/MobileSync';
 import Faq from '@/components/Faq';
 import PricingModel from '@/components/PricingModel';
 import CtaBand from '@/components/CtaBand';
+import { Showcase, LaunchOptions, TechStack } from '@/components/HomeExtras';
 
 export default function HomePage() {
   return (
@@ -25,8 +26,11 @@ export default function HomePage() {
       <Dashboard />
       <Compare />
       <Integrations />
+      <Showcase />
+      <LaunchOptions />
       <LaunchPlan />
       <MobileSync />
+      <TechStack />
       <PricingModel />
       <Faq />
       <CtaBand />

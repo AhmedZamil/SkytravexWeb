@@ -15,8 +15,8 @@ export default function QuoteBuilder() {
   };
 
   const href = useMemo(() => {
-    if (!picked.length) return '/demo';
-    return `/demo?scope=${encodeURIComponent(picked.join(', '))}`;
+    if (!picked.length) return '/contact';
+    return `/contact?scope=${encodeURIComponent(picked.join(', '))}`;
   }, [picked]);
 
   return (
